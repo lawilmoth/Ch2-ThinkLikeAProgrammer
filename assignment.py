@@ -16,7 +16,8 @@ def square(n):
     #####
     """
 
-    pass
+    for i in range(n):
+        print('#' * n)
 
 def triange1(n):
     """Create a function that makes a right triangle of size n

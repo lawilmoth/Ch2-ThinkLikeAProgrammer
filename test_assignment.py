@@ -10,6 +10,9 @@ from assignment import (
     luhn_check,
 )
 
+# Helper to normalize line endings
+def normalize(s: str) -> str:
+    return s.replace("\r\n", "\n")
 
 @pytest.mark.parametrize(
     "n,expected",
@@ -22,7 +25,7 @@ from assignment import (
 def test_square_prints(n, expected, capsys):
     square(n)
     captured = capsys.readouterr()
-    assert captured.out == expected
+    assert normalize(captured.out) == expected
 
 
 @pytest.mark.parametrize(
@@ -36,7 +39,7 @@ def test_square_prints(n, expected, capsys):
 def test_triange1_prints(n, expected, capsys):
     triange1(n)
     captured = capsys.readouterr()
-    assert captured.out == expected
+    assert normalize(captured.out) == expected
 
 
 @pytest.mark.parametrize(
@@ -50,7 +53,7 @@ def test_triange1_prints(n, expected, capsys):
 def test_triangle2_prints(n, expected, capsys):
     triangle2(n)
     captured = capsys.readouterr()
-    assert captured.out == expected
+    assert normalize(captured.out) == expected
 
 
 @pytest.mark.parametrize("n", [1, 3, 5])
@@ -58,7 +61,7 @@ def test_triangle3_prints_centered(n, capsys):
     triangle3(n)
     captured = capsys.readouterr()
     expected = "".join((" " * (n - i) + "#" * (2 * i - 1) + "\n") for i in range(1, n + 1))
-    assert captured.out == expected
+    assert normalize(captured.out) == expected
 
 
 @pytest.mark.parametrize(
@@ -87,7 +90,7 @@ def test_find_first_digit(value, expected):
 def test_loop_over_all_digits_prints(value, expected_output, capsys):
     loop_over_all_digits(value)
     captured = capsys.readouterr()
-    assert captured.out == expected_output
+    assert normalize(captured.out) == expected_output
 
 
 @pytest.mark.parametrize(
